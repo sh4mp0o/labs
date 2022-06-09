@@ -37,55 +37,55 @@ using System.IO;
 //139
 namespace lab01._03._22
 {
-internal class Program
-{
-static void Main(string[] args)
-{
-int n;
-int[] cost; int[] count;
-using (StreamReader sr = new StreamReader("input.txt"))
-{
-n = int.Parse(sr.ReadLine());
-cost = new int[n]; count = new int[n];
-for (int i = 0; i < n; i++)
-{
-string[] line = sr.ReadLine().Split();
-cost[i] = int.Parse(line[0]);
-count[i] = int.Parse(line[1]);
-}
-}
-int price = 0; int op = cost[n - 1]; int idx = 0; int cp = 0;
-for (int i = n - 1; i > 0; i--)
-{
-if (cost[i - 1] >= op)
-{
-for (int j = i; j < n - 1; j++)
-{
-if (cost[j + 1] < cost[j])
-{
-price += cost[j] * count[j];
-break;
-}
-else price += op * count[j];
-}
-op = cost[i - 1];
-idx = i - 1;
-}
-else if (cost[i - 1] < op && i == 1)
-{
-for (int j = 0; j <= idx; j++)
-{
-price += op * count[j];
-}
-}
-if(cost[i-1] >= op && i == 1)
-{
-price += cost[0] * count[0];
-}
-}
-price += cost[n - 1] * count[n - 1];
-Console.WriteLine(price);
-Console.ReadKey();
-}
-}
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            int n;
+            int[] cost; int[] count;
+            using (StreamReader sr = new StreamReader("input.txt"))
+            {
+                n = int.Parse(sr.ReadLine());
+                cost = new int[n]; count = new int[n];
+                for (int i = 0; i < n; i++)
+                {
+                    string[] line = sr.ReadLine().Split();
+                    cost[i] = int.Parse(line[0]);
+                    count[i] = int.Parse(line[1]);
+                }
+            }
+            int price = 0; int op = cost[n - 1]; int idx = 0; int cp = 0;
+            for (int i = n - 1; i > 0; i--)
+            {
+                if (cost[i - 1] >= op)
+                {
+                    for (int j = i; j < n - 1; j++)
+                    {
+                        if (cost[j + 1] < cost[j])
+                        {
+                            price += cost[j] * count[j];
+                            break;
+                        }
+                        else price += op * count[j];
+                    }
+                    op = cost[i - 1];
+                    idx = i - 1;
+                }
+                else if (cost[i - 1] < op && i == 1)
+                {
+                    for (int j = 0; j <= idx; j++)
+                    {
+                        price += op * count[j];
+                    }
+                }
+                if (cost[i - 1] >= op && i == 1)
+                {
+                    price += cost[0] * count[0];
+                }
+            }
+            price += cost[n - 1] * count[n - 1];
+            Console.WriteLine(price);
+            Console.ReadKey();
+        }
+    }
 }

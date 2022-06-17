@@ -54,7 +54,7 @@ namespace lab01._03._22
                     count[i] = int.Parse(line[1]);
                 }
             }
-            int price = 0; int op = cost[n - 1]; int idx = 0; int cp = 0;
+            int price = 0; int op = cost[n - 1]; int idx = n - 1;
             for (int i = n - 1; i > 0; i--)
             {
                 if (cost[i - 1] >= op)
@@ -83,8 +83,13 @@ namespace lab01._03._22
                     price += cost[0] * count[0];
                 }
             }
-            price += cost[n - 1] * count[n - 1];
-            Console.WriteLine(price);
+            if (idx == n - 1)
+                Console.WriteLine(price);
+            else
+            {
+                price += cost[n - 1] * count[n - 1];
+                Console.WriteLine(price);
+            }
             Console.ReadKey();
         }
     }
